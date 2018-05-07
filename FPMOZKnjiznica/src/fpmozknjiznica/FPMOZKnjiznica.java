@@ -5,17 +5,21 @@
  */
 package fpmozknjiznica;
 
+import fpmozknjiznica.model.Korisnik;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import service.KorisnikService;
 
 /**
  *
  * @author itic-4
  */
 public class FPMOZKnjiznica extends Application {
+    
+    private static KorisnikService korisnikService = new KorisnikService();
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -32,6 +36,9 @@ public class FPMOZKnjiznica extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+        
+        Korisnik k = new Korisnik (0, "Daniel", "Vasic", "daniel.vasic@fpmoz.sum.ba", "123456");
+        korisnikService.spasi(k);
     }
     
 }
