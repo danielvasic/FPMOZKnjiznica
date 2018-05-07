@@ -39,7 +39,7 @@ public class Baza extends Konekcija {
     
     public PreparedStatement prepare (String sql) {
         try {
-            return this.konekcija.prepareStatement(sql);
+            return this.konekcija.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
         } catch (SQLException ex) {
             System.out.println("Nastala je greška prilikom izvršavanja upit");
         }

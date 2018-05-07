@@ -36,9 +36,20 @@ public class FPMOZKnjiznica extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-        
+        //dodaj korisnika
         Korisnik k = new Korisnik (0, "Daniel", "Vasic", "daniel.vasic@fpmoz.sum.ba", "123456");
         korisnikService.spasi(k);
+        //uredi email
+        k.setEmail("dvasic1@gmail.com");
+        //k.setIme("Marko");
+        //Uredi korisnika
+        korisnikService.uredi(k);
+        
+        
+        //Dodaj korisnika i pobrisi ga iz baze
+        Korisnik k1 = new Korisnik (0, "Daniel", "Vasic", "daniel.vasic@fpmoz.sum.ba", "123456");
+        korisnikService.spasi(k1);
+        korisnikService.brisi(k1);
     }
     
 }

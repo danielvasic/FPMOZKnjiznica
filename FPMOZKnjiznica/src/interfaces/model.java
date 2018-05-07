@@ -13,9 +13,9 @@ import java.util.List;
  * @param <Object>
  */
 public interface model <Object> {
-    public Object spasi();
-    public Object uredi();
-    public boolean brisi();
+    public Object spasi(Object object);
+    public Object uredi(Object object);
+    public boolean brisi(Object object);
     public List <Object> sveIzBaze();
-    public Object izBazePremaId(int id);
+    public Object izBazePremaId(Object object);
 }
