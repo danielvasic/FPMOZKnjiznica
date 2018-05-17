@@ -17,7 +17,8 @@ import java.sql.SQLException;
  */
 public class LoginService {
     private static KorisnikService korisnikService = new KorisnikService();
-    public static Korisnik prijavljeni;
+    static Korisnik prijavljeni = null;
+    
     public static boolean login (String email, String lozinka) {
         try {
             PreparedStatement upit = Baza.DB.prepare(
@@ -38,4 +39,8 @@ public class LoginService {
         }
     }
     
+    
+    public static Korisnik logiraniKorisnik () {
+        return LoginService.prijavljeni;
+    }
 }

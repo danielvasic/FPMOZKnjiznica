@@ -5,6 +5,7 @@
  */
 package fpmozknjiznica.controller;
 
+import fpmozknjiznica.model.Korisnik;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -27,7 +28,8 @@ public class AdministracijaController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        korisnikLbl.setText(LoginService.prijavljeni.getIme() + " " + LoginService.prijavljeni.getPrezime());
+        Korisnik prijavljeni = LoginService.logiraniKorisnik();
+        korisnikLbl.setText(prijavljeni.getIme() + " " + prijavljeni.getPrezime());
     }    
     
 }
