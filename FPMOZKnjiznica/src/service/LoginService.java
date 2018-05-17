@@ -10,15 +10,13 @@ import fpmozknjiznica.model.Korisnik;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author itic-4
  */
 public class LoginService {
-    private static KorisnikService kservice = new KorisnikService();
+    private static KorisnikService korisnikService = new KorisnikService();
     public static Korisnik prijavljeni;
     public static boolean login (String email, String lozinka) {
         try {
@@ -28,7 +26,7 @@ public class LoginService {
             upit.setString(2, lozinka);
             ResultSet rs = upit.executeQuery();
             if (rs.next()) {
-                LoginService.prijavljeni = kservice.izBazePremaId(rs.getInt(1));
+                LoginService.prijavljeni = korisnikService.izBazePremaId(rs.getInt(1));
                 return true;
                 
             } else {

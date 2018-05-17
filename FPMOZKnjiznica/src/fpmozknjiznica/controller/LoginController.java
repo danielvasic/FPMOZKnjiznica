@@ -24,8 +24,6 @@ import javafx.stage.Stage;
  */
 public class LoginController implements Initializable {
     
-    Utils util =  new Utils();
-    
     @FXML
     private TextField korisnickoImeTxt;
     
@@ -46,7 +44,7 @@ public class LoginController implements Initializable {
             if (LoginService.login(email, password)) {
                 Node source = (Node) event.getSource();
                 Stage stage = (Stage)source.getScene().getWindow();
-                util.prikazi(stage, "Administracija");
+                Utils.prikazi(stage, "Administracija");
             } else {
                 greskaLbl.setText("Pogrešni korisnički podaci...");
             }

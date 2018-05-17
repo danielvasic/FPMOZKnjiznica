@@ -6,8 +6,6 @@
 package fpmozknjiznica;
 
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,9 +16,9 @@ import javafx.stage.Stage;
  * @author itic-4
  */
 public class Utils {
-    public void prikazi (Stage window, String view) {
+    public static void prikazi (Stage window, String view) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("view/"+view+".fxml"));
+            Parent root = FXMLLoader.load(Utils.class.getResource("view/"+view+".fxml"));
             Scene scene = new Scene(root);
             window.setScene(scene);
             window.show();
