@@ -10,15 +10,21 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-
+import javafx.stage.Window;
+import service.LoginService;
+import fpmozknjiznica.Utils;
+import javafx.stage.Stage;
 /**
  *
  * @author itic-4
  */
 public class LoginController implements Initializable {
+    
+    Utils util =  new Utils();
     
     @FXML
     private TextField korisnickoImeTxt;
@@ -35,6 +41,15 @@ public class LoginController implements Initializable {
             greskaLbl.setText("Morate unijeti sve tražene korisničke podatke.");
         } else {
             greskaLbl.setText("");
+            String email = korisnickoImeTxt.getText();
+            String password = lozinkaTxt.getText();
+            if (LoginService.login(email, password)) {
+                Node source = (Node) event.getSource();
+                Stage stage = (Stage)source.getScene().getWindow();
+                util.prikazi(stage, "Administracija");
+            } else {
+                greskaLbl.setText("Pogrešni korisnički podaci...");
+            }
         }
     }
     

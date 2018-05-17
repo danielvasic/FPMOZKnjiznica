@@ -97,10 +97,10 @@ public class KorisnikService implements model <Korisnik>{
     }
 
     @Override
-    public Korisnik izBazePremaId(Korisnik korisnik) {
+    public Korisnik izBazePremaId(int id) {
         try {
             PreparedStatement upit = DB.prepare ("SELECT * FROM korisnici WHERE id=?");
-            upit.setInt(1, korisnik.getId());
+            upit.setInt(1, id);
             ResultSet rs = upit.executeQuery();
             if (rs.next()){
                 return new Korisnik(
