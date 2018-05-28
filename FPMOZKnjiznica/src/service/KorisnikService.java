@@ -84,7 +84,7 @@ public class KorisnikService implements model <Korisnik>{
             while (rs.next()){
                 korisnici.add(new Korisnik(
                         rs.getInt(1), 
-                        rs.getString(1),
+                        rs.getString(2),
                         rs.getString(3),
                         rs.getString(4),
                         rs.getString(5)
