@@ -11,14 +11,16 @@ import interfaces.model;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
  * @author Admin
  */
 public class KorisnikService implements model <Korisnik>{
+    
+    public static final KorisnikService korisnikService = new KorisnikService();
 
     @Override
     public Korisnik spasi(Korisnik korisnik) {
@@ -75,10 +77,10 @@ public class KorisnikService implements model <Korisnik>{
     }
 
     @Override
-    public List<Korisnik> sveIzBaze() {
+    public ObservableList<Korisnik> sveIzBaze() {
         try {
-            List <Korisnik> korisnici = new ArrayList<Korisnik> ();
-            ResultSet rs = DB.select("SELECT * FROM korisnici");
+            ObservableList <Korisnik> korisnici = FXCollections.observableArrayList();
+        ResultSet rs = DB.select("SELECT * FROM korisnici");
             while (rs.next()){
                 korisnici.add(new Korisnik(
                         rs.getInt(1), 
