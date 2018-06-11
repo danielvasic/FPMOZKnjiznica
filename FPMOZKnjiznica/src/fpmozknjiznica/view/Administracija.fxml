@@ -20,7 +20,7 @@
          </font>
       </Label>
       <Label fx:id="korisnikLbl" layoutX="353.0" layoutY="10.0" prefHeight="38.0" prefWidth="237.0" />
-      <GridPane layoutX="14.0" layoutY="48.0">
+      <GridPane layoutX="14.0" layoutY="116.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.0" minWidth="10.0" prefWidth="61.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="139.0" />
@@ -36,15 +36,27 @@
             <TextField fx:id="ime" promptText="Unesite ime korisnika" GridPane.columnIndex="1" />
             <TextField fx:id="prezime" promptText="Unesite prezime korisnika" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="email" promptText="Unesite email korisnika" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" onAction="#dodajKorisnika" text="Dodaj korisnika" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label text="Ime" />
             <Label text="Prezime" GridPane.rowIndex="1" />
             <Label text="Email" GridPane.rowIndex="2" />
             <Label text="Lozinka" GridPane.rowIndex="3" />
             <PasswordField fx:id="lozinka" promptText="Unesite lozinku korisnika" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <GridPane GridPane.columnIndex="1" GridPane.rowIndex="4">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#dodajKorisnika" prefHeight="27.0" prefWidth="68.0" text="Spasi" GridPane.rowIndex="4" />
+                  <Button mnemonicParsing="false" onAction="#brisiKorisnika" prefHeight="27.0" prefWidth="74.0" style="-fx-background-color: red;" text="Brisi" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+               </children>
+            </GridPane>
          </children>
       </GridPane>
-      <TableView fx:id="table" layoutX="224.0" layoutY="48.0" prefHeight="348.0" prefWidth="371.0">
+      <TableView fx:id="table" layoutX="224.0" layoutY="48.0" onMouseClicked="#odaberiKorisnika" prefHeight="348.0" prefWidth="371.0">
         <columns>
           <TableColumn fx:id="tableId" prefWidth="75.0" text="Id" />
           <TableColumn fx:id="tableIme" prefWidth="75.0" text="Ime" />

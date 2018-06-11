@@ -18,6 +18,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import service.KorisnikService;
 import service.LoginService;
 
@@ -28,9 +29,9 @@ import service.LoginService;
  */
 public class AdministracijaController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+    
+    private Korisnik odabraniKorisnik;
+    
     @FXML
     Label korisnikLbl;
     
@@ -72,9 +73,17 @@ public class AdministracijaController implements Initializable {
         String sPrezime = this.prezime.getText();
         String sEmail = this.email.getText();
         String sLozinka = this.lozinka.getText();
-        
-        Korisnik k = new Korisnik (0, sIme, sPrezime, sEmail, sLozinka);
-        KorisnikService.korisnikService.spasi(k);
+        if(this.odabraniKorisnik != null){
+            this.odabraniKorisnik.setIme(sIme);
+            this.odabraniKorisnik.setPrezime(sPrezime);
+            this.odabraniKorisnik.setEmail(sEmail);
+            this.odabraniKorisnik.setLozinka(sLozinka);
+            KorisnikService.korisnikService.uredi(this.odabraniKorisnik);
+            this.odabraniKorisnik = null;
+        } else {
+            Korisnik k = new Korisnik (0, sIme, sPrezime, sEmail, sLozinka);
+            KorisnikService.korisnikService.spasi(k);
+        }
         this.ime.setText("");
         this.prezime.setText("");
         this.email.setText("");
@@ -103,6 +112,26 @@ public class AdministracijaController implements Initializable {
         
         table.setItems(korisnici);
     }
+    
+    @FXML
+    public void odaberiKorisnika (MouseEvent evt) {
+        this.odabraniKorisnik = (Korisnik) this.table.getSelectionModel().getSelectedItem();
+        this.email.setText(this.odabraniKorisnik.getEmail());
+        this.ime.setText(this.odabraniKorisnik.getIme());
+        this.prezime.setText(this.odabraniKorisnik.getPrezime());
+        this.lozinka.setText(this.odabraniKorisnik.getLozinka());
+    }
+    
+    @FXML
+    public void brisiKorisnika(ActionEvent evt) {
+        KorisnikService.korisnikService.brisi(this.odabraniKorisnik);
+        this.ime.setText("");
+        this.prezime.setText("");
+        this.email.setText("");
+        this.lozinka.setText("");
+        this.popuniKorisnike();
+    }
+    
     
     
 }
