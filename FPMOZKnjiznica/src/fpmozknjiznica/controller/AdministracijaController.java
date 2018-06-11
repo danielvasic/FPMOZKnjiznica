@@ -6,6 +6,7 @@
 package fpmozknjiznica.controller;
 
 import fpmozknjiznica.model.Korisnik;
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
@@ -18,7 +19,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import service.KorisnikService;
 import service.LoginService;
 
@@ -47,6 +52,9 @@ public class AdministracijaController implements Initializable {
     @FXML
     PasswordField lozinka;
     
+    @FXML
+    ImageView slika;
+    
     
     @FXML
     TableView table;
@@ -73,21 +81,25 @@ public class AdministracijaController implements Initializable {
         String sPrezime = this.prezime.getText();
         String sEmail = this.email.getText();
         String sLozinka = this.lozinka.getText();
+        Image bSlika = this.slika.getImage();
         if(this.odabraniKorisnik != null){
             this.odabraniKorisnik.setIme(sIme);
             this.odabraniKorisnik.setPrezime(sPrezime);
             this.odabraniKorisnik.setEmail(sEmail);
             this.odabraniKorisnik.setLozinka(sLozinka);
+            this.odabraniKorisnik.setSlika(bSlika);
             KorisnikService.korisnikService.uredi(this.odabraniKorisnik);
+            
             this.odabraniKorisnik = null;
         } else {
-            Korisnik k = new Korisnik (0, sIme, sPrezime, sEmail, sLozinka);
+            Korisnik k = new Korisnik (0, sIme, sPrezime, sEmail, sLozinka, bSlika);
             KorisnikService.korisnikService.spasi(k);
         }
         this.ime.setText("");
         this.prezime.setText("");
         this.email.setText("");
         this.lozinka.setText("");
+        this.slika.setImage(null);
         this.popuniKorisnike();
     }
     
@@ -120,6 +132,16 @@ public class AdministracijaController implements Initializable {
         this.ime.setText(this.odabraniKorisnik.getIme());
         this.prezime.setText(this.odabraniKorisnik.getPrezime());
         this.lozinka.setText(this.odabraniKorisnik.getLozinka());
+        this.slika.setImage(this.odabraniKorisnik.getSlika());
+    }
+    
+    @FXML
+    public void odaberiSliku(ActionEvent evt) {
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().add(new ExtensionFilter("Images", "*.jpg"));
+        File datoteka = fc.showOpenDialog(null);
+        Image binarnaSlika = new Image(datoteka.toURI().toString());
+        this.slika.setImage(binarnaSlika);
     }
     
     @FXML

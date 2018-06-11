@@ -5,6 +5,8 @@
  */
 package fpmozknjiznica.model;
 
+import javafx.scene.image.Image;
+
 /**
  *
  * @author itic-4
@@ -15,13 +17,15 @@ public class Korisnik {
     private String prezime;
     private String email;
     private String lozinka;
+    private Image slika;
 
-    public Korisnik(int id, String ime, String prezime, String email, String lozinka) {
+    public Korisnik(int id, String ime, String prezime, String email, String lozinka, Image slika) {
         this.id = id;
         this.ime = ime;
         this.prezime = prezime;
         this.email = email;
         this.lozinka = lozinka;
+        this.slika = slika;
     }
     
     public int getId() {
@@ -64,6 +68,11 @@ public class Korisnik {
         this.lozinka = lozinka;
     }
     
+    public Image getSlika () {
+        return this.slika;
+    }
     
-    
+    public void setSlika (Image slika){
+        this.slika = slika;
+    }
 }
